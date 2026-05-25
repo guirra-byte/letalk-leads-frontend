@@ -4,8 +4,6 @@ Interface Next.js para consulta e enriquecimento de CNPJs, pipeline Kanban de le
 
 **Stack:** Next.js 16 (App Router) · React 19 · TypeScript · TanStack Query · `@dnd-kit` · Tailwind CSS · shadcn/ui · Axios
 
-**Backend (repo separado):** documentação da API, worker e infra em [`../backend/README.md`](../backend/README.md) quando clonado ao lado do backend.
-
 ---
 
 ## Pré-requisitos
@@ -178,8 +176,6 @@ sequenceDiagram
 3. **Importar** — `POST /cnpj/trigger-batch-import` → invalidação do cache de leads.
 
 A máquina de estados do workflow cobre `idle → selected → uploading → uploaded → triggering → done` (com estados de erro e cancelamento). Ao fechar o dialog, `abortIfPending` tenta cancelar importações pendentes via `DELETE /cnpj/batch-imports/:batchImportId`.
-
-> Detalhes de path S3, worker thread e processamento em lote no servidor estão na documentação do backend ([`../backend/README.md`](../backend/README.md) — seção *Batch import com AsyncGenerator + Worker Thread*).
 
 ---
 
