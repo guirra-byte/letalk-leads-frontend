@@ -185,4 +185,4 @@ A máquina de estados do workflow cobre `idle → selected → uploading → upl
 
 Projeto desenvolvido com dedicação.
 
-Contato: guirramatheus1@gmail.com | [LinkedIn](https://linkedin.com/in/guirra-byte) | +55 (61) 99283-9756
+Contato: guirramatheus1@gmail.com | [LinkedIn](https://www.linkedin.com/in/matheus-guirra/) | +55 (61) 99283-9756
