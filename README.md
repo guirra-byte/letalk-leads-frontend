@@ -1,4 +1,6 @@
 # letalk — Frontend (Desafio Técnico)
+<img width="1200" height="630" alt="image (1)" src="https://github.com/user-attachments/assets/d6b82d8a-59f6-49d9-a237-00be5bfa29f3" />
+
 
 Interface Next.js para consulta e enriquecimento de CNPJs, pipeline Kanban de leads e importação em lote via CSV. Consome a API backend em `http://localhost:3001/api/v1` (Fastify).
 
@@ -106,7 +108,7 @@ O requisito central do desafio era:
 
 Após a consulta de CNPJ (Brasil API), o lead chega **enriquecido** — razão social, CNAEs, sócios, regime tributário, capital social, entre outros. A interface precisava materializar esse enriquecimento em um fluxo de **análise e priorização** acessível ao usuário.
 
-Escolhi o modelo **Kanban** porque, pela minha experiência em projetos full-stack, é uma forma simples, visual e coesa de organizar etapas de validação — cada coluna representa um estágio de decisão comercial, sem over-engineering.
+Escolhi o modelo de visualização **Kanban** porque, é uma forma simples, visual e coesa de organizar etapas de validação — cada coluna representa um estágio de decisão comercial, sem over-engineering.
 
 O board mapeia `PipelineStatus` em 4 colunas ([`lib/types.ts`](lib/types.ts)):
 
@@ -120,6 +122,8 @@ O board mapeia `PipelineStatus` em 4 colunas ([`lib/types.ts`](lib/types.ts)):
 **Prioridade** (`LOW` / `MEDIUM` / `HIGH`) funciona como eixo ortogonal às colunas — reflete a priorização pedida no requisito, exibida nos cards sem ocupar uma dimensão extra no board.
 
 **Fluxo do usuário:**
+<br/>
+<img width="1200" height="630" alt="image (2)" src="https://github.com/user-attachments/assets/bf03f6fb-b853-46a3-a7e2-a3510b2a0bdb" />
 
 1. Busca CNPJ → preview enriquecido → cria lead com status e prioridade iniciais.
 2. Lead aparece no Kanban → usuário arrasta entre colunas conforme a análise evolui.
