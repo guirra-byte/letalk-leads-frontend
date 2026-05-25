@@ -1,7 +1,7 @@
 'use client';
 
-import { useState, useRef } from 'react';
-import { Search, Building2 } from 'lucide-react';
+import { useState } from 'react';
+import { Building2 } from 'lucide-react';
 import {
   Dialog,
   DialogContent,
@@ -9,9 +9,8 @@ import {
   DialogTitle,
   DialogDescription,
 } from '@/components/ui/dialog';
-import { CNPJSearch } from './cnpj-search';
+import { CNPJSearch, type LeadSearchResult } from './cnpj-search';
 import { LeadDetailsModal } from './lead-details-modal';
-import type { LeadAnalysis } from '@/lib/types';
 
 interface SearchDialogProps {
   open: boolean;
@@ -19,20 +18,17 @@ interface SearchDialogProps {
 }
 
 export function SearchDialog({ open, onOpenChange }: SearchDialogProps) {
-  const [searchResult, setSearchResult] = useState<{
-    data: LeadAnalysis;
-    cnpj: string;
-  } | null>(null);
+  const [searchResult, setSearchResult] = useState<LeadSearchResult | null>(null);
   const [showDetails, setShowDetails] = useState(false);
 
-  const handleResult = (data: LeadAnalysis, cnpj: string) => {
-    setSearchResult({ data, cnpj });
+  const handleResult = (result: LeadSearchResult) => {
+    setSearchResult(result);
     setShowDetails(true);
   };
 
-  const handleDetailsClose = (open: boolean) => {
-    setShowDetails(open);
-    if (!open) {
+  const handleDetailsClose = (next: boolean) => {
+    setShowDetails(next);
+    if (!next) {
       setSearchResult(null);
       onOpenChange(false);
     }
@@ -48,7 +44,7 @@ export function SearchDialog({ open, onOpenChange }: SearchDialogProps) {
               Consultar CNPJ
             </DialogTitle>
             <DialogDescription>
-              Pesquise uma empresa pelo CNPJ para visualizar informações e adicionar ao pipeline.
+              Informe os dados comerciais e o CNPJ para enriquecer e adicionar ao pipeline.
             </DialogDescription>
           </DialogHeader>
           <div className="pt-4">
@@ -63,6 +59,7 @@ export function SearchDialog({ open, onOpenChange }: SearchDialogProps) {
           onOpenChange={handleDetailsClose}
           data={searchResult.data}
           cnpj={searchResult.cnpj}
+          inputFields={searchResult.inputFields}
         />
       )}
     </>
